@@ -17,7 +17,7 @@ import Image from "next/image";
 import ImageCarousel from "@/components/ImageCarousel";
 import { useAuth } from "@/hooks/use-auth";
 import { Loader2, ChevronRight, ChevronLeft } from "lucide-react";
-import type { RegisterData } from "@/lib/api/auth";
+import type { RegisterData, UserType } from "@/lib/api/auth";
 
 const carouselImages = [
   '/images/img_one.jpg',
@@ -92,6 +92,11 @@ export default function Register() {
     return formData.email && formData.mobileNumber && formData.password;
   };
 
+  // Type guard to check if userType is valid
+  const isValidUserType = (userType: string): userType is UserType => {
+    return userType !== '' && ['student', 'doctor', 'pharmacist', 'nurse', 'therapist', 'researcher', 'other'].includes(userType);
+  };
+
   // Validate step 2 (profile information)
   const validateStep2 = () => {
     if (!formData.name || !formData.userType || !formData.degree) {
@@ -129,11 +134,21 @@ export default function Register() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (validateStep2() && formData.userType) {
-      // TypeScript assertion: validateStep2() ensures userType is not empty
+    if (validateStep2() && isValidUserType(formData.userType)) {
+      // TypeScript now knows userType is a valid UserType (not empty string)
       const registerData: RegisterData = {
-        ...formData,
-        userType: formData.userType as RegisterData['userType'],
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+        mobileNumber: formData.mobileNumber,
+        userType: formData.userType, // TypeScript knows this is UserType, not empty string
+        specialization: formData.specialization,
+        degree: formData.degree,
+        licenseNo: formData.licenseNo,
+        institution: formData.institution,
+        yearOfStudy: formData.yearOfStudy,
+        pharmacyName: formData.pharmacyName,
+        experience: formData.experience,
       };
       register(registerData);
     }
