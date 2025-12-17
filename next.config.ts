@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
   // output: 'standalone', // Not needed for Vercel
   poweredByHeader: false, // Remove X-Powered-By header
   compress: true, // Enable gzip compression
-  swcMinify: true, // Use SWC minifier (faster)
+  // swcMinify is deprecated in Next.js 15 - SWC minification is enabled by default
   images: {
     domains: [],
     formats: ['image/avif', 'image/webp'],
