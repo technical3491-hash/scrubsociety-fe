@@ -155,7 +155,7 @@ export default function ConnectionsPage() {
                             <AvatarFallback>
                               {user.name
                                 .split(' ')
-                                .map((n) => n[0])
+                                .map((n: string) => n[0])
                                 .join('')
                                 .slice(0, 2)
                                 .toUpperCase()}
@@ -279,7 +279,7 @@ export default function ConnectionsPage() {
                           <AvatarFallback>
                             {request.requester.name
                               .split(' ')
-                              .map((n) => n[0])
+                              .map((n: string) => n[0])
                               .join('')
                               .slice(0, 2)
                               .toUpperCase()}
@@ -353,7 +353,7 @@ export default function ConnectionsPage() {
                           <AvatarFallback>
                             {request.recipient.name
                               .split(' ')
-                              .map((n) => n[0])
+                              .map((n: string) => n[0])
                               .join('')
                               .slice(0, 2)
                               .toUpperCase()}
@@ -433,7 +433,7 @@ export default function ConnectionsPage() {
                           <AvatarFallback>
                             {connection.otherUser.name
                               .split(' ')
-                              .map((n) => n[0])
+                              .map((n: string) => n[0])
                               .join('')
                               .slice(0, 2)
                               .toUpperCase()}
