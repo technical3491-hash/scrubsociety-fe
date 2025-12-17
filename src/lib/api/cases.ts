@@ -87,7 +87,9 @@ interface ApiCommentResponse {
   content?: string;
   text?: string;
   createdAt?: string;
+  created_at?: string; // Support both camelCase and snake_case
   updatedAt?: string;
+  updated_at?: string; // Support both camelCase and snake_case
 }
 
 interface ApiCommentsResponse {

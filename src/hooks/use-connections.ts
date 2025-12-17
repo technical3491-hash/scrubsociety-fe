@@ -25,10 +25,7 @@ export function useAllUsers(searchQuery?: string) {
     gcTime: 300000, // Keep in cache for 5 minutes
     retry: false, // Don't retry on 404 errors
     enabled: true, // Can be conditionally enabled if needed
-    onError: (error: Error) => {
-      // Log error but don't break the UI
-      console.error('Failed to fetch users:', error);
-    },
+    // Note: onError is deprecated in React Query v5, use error handling in components instead
   });
 }
 

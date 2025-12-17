@@ -217,7 +217,8 @@ export default function CaseFeed() {
       const errorMessage = error instanceof Error ? error.message : "Failed to save case. Please try again.";
       
       // Check if it's an authentication error
-      if (errorMessage.includes("Unauthorized") || errorMessage.includes("not authenticated") || error?.status === 401) {
+      const errorWithStatus = error as Error & { status?: number };
+      if (errorMessage.includes("Unauthorized") || errorMessage.includes("not authenticated") || errorWithStatus?.status === 401) {
         toast({
           title: "Authentication Required",
           description: "Please login to create or edit a case.",

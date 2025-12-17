@@ -122,12 +122,12 @@ async function queryOpenAI(request: AIQueryRequest): Promise<AIQueryResponse> {
     // For chat mode, return the full response
     // Also extract suggestions if needed
     let suggestions: string[] = [];
-    const lines = content.split('\n').filter(line => line.trim().length > 0);
+    const lines = content.split('\n').filter((line: string) => line.trim().length > 0);
     
     // Try to extract bullet points or numbered items as suggestions
     const bulletPoints = lines
-      .filter(line => /^[-•*•]\s+|^\d+[.)]\s+/.test(line))
-      .map(line => line.replace(/^[-•*•]\s+|^\d+[.)]\s+/, '').trim())
+      .filter((line: string) => /^[-•*•]\s+|^\d+[.)]\s+/.test(line))
+      .map((line: string) => line.replace(/^[-•*•]\s+|^\d+[.)]\s+/, '').trim())
       .slice(0, 5);
     
     if (bulletPoints.length > 0) {
