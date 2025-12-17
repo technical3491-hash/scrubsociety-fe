@@ -17,6 +17,7 @@ import Image from "next/image";
 import ImageCarousel from "@/components/ImageCarousel";
 import { useAuth } from "@/hooks/use-auth";
 import { Loader2, ChevronRight, ChevronLeft } from "lucide-react";
+import type { RegisterData } from "@/lib/api/auth";
 
 const carouselImages = [
   '/images/img_one.jpg',
@@ -128,8 +129,13 @@ export default function Register() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (validateStep2()) {
-      register(formData);
+    if (validateStep2() && formData.userType) {
+      // TypeScript assertion: validateStep2() ensures userType is not empty
+      const registerData: RegisterData = {
+        ...formData,
+        userType: formData.userType as RegisterData['userType'],
+      };
+      register(registerData);
     }
   };
 
