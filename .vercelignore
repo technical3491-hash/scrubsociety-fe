@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# Testing
+coverage/
+
+# Misc
+.DS_Store
+*.pem
+*.log
+
+# Local env files (Vercel uses its own env vars)
+.env*.local
+.env.local
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+Thumbs.db
+
