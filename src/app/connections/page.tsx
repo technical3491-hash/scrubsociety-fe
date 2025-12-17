@@ -18,6 +18,7 @@ import {
 } from '@/hooks/use-connections';
 import { useGetOrCreateConversation } from '@/hooks/use-chat';
 import { useRouter } from 'next/navigation';
+import type { User } from '@/lib/api/connections';
 import { formatDistanceToNow } from 'date-fns';
 
 export default function ConnectionsPage() {
@@ -76,7 +77,7 @@ export default function ConnectionsPage() {
     }
   };
 
-  const getConnectionStatus = (user: any) => {
+  const getConnectionStatus = (user: User) => {
     if (!user.connectionStatus) return null;
     return user.connectionStatus;
   };

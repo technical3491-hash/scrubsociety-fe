@@ -212,9 +212,9 @@ export default function CaseFeed() {
       }
       setFormDialogOpen(false);
       setEditingCase(null);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("Failed to save case:", error);
-      const errorMessage = error?.message || "Failed to save case. Please try again.";
+      const errorMessage = error instanceof Error ? error.message : "Failed to save case. Please try again.";
       
       // Check if it's an authentication error
       if (errorMessage.includes("Unauthorized") || errorMessage.includes("not authenticated") || error?.status === 401) {

@@ -15,6 +15,8 @@ import { useAuth } from "@/hooks/use-auth";
 import { useSocket } from "@/hooks/use-socket";
 import { formatDistanceToNow } from "date-fns";
 import { useQueryClient } from "@tanstack/react-query";
+import type { Message, Conversation } from "@/lib/api/chat";
+import type { User } from "@/lib/api/connections";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -90,7 +92,7 @@ export default function Chat() {
     }
 
     // Listen for new messages
-    const handleNewMessage = (data: { conversationId: string; message: any }) => {
+    const handleNewMessage = (data: { conversationId: string; message: Message }) => {
       // If this message is for the currently selected conversation, update it
       if (data.conversationId === selectedConversationId) {
         // Invalidate and refetch the conversation to get the new message
@@ -102,7 +104,7 @@ export default function Chat() {
     };
 
     // Listen for conversation updates
-    const handleConversationUpdate = (data: { conversationId: string; lastMessage: any }) => {
+    const handleConversationUpdate = (data: { conversationId: string; lastMessage: Conversation['lastMessage'] }) => {
       // Update conversations list
       queryClient.invalidateQueries({ queryKey: ['conversations'] });
       
@@ -225,7 +227,7 @@ export default function Chat() {
   const otherParticipant = selectedConversation?.otherParticipant;
   const messages = selectedConversation?.messages || [];
 
-  const getConnectionStatus = (user: any) => {
+  const getConnectionStatus = (user: User) => {
     if (!user.connectionStatus) return null;
     return user.connectionStatus;
   };

@@ -60,6 +60,42 @@ interface ApiGetCasesResponse {
   hasMore?: boolean;
 }
 
+interface ApiLikeResponse {
+  success?: boolean;
+  data?: {
+    likes: number;
+    liked: boolean;
+  };
+  likes?: number;
+  liked?: boolean;
+}
+
+interface ApiCommentResponse {
+  _id?: string;
+  id?: string;
+  userId?: string;
+  user?: {
+    _id?: string;
+    id?: string;
+    name?: string;
+    username?: string;
+    avatar?: string;
+    profilePicture?: string;
+  };
+  userName?: string;
+  userAvatar?: string;
+  content?: string;
+  text?: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+interface ApiCommentsResponse {
+  success?: boolean;
+  data?: ApiCommentResponse[];
+  comments?: ApiCommentResponse[];
+}
+
 /**
  * Transform API case response to Case interface
  */
@@ -376,12 +412,12 @@ export async function toggleLike(caseId: string): Promise<{ likes: number; liked
       errorMessage = response.statusText || errorMessage;
     }
     const error = new Error(errorMessage);
-    (error as any).status = response.status;
+    (error as Error & { status?: number }).status = response.status;
     throw error;
   }
 
   const responseText = await response.text();
-  let apiResponse: any;
+  let apiResponse: ApiLikeResponse;
   try {
     apiResponse = JSON.parse(responseText);
   } catch {
@@ -429,12 +465,12 @@ export async function getLikeStatus(caseId: string): Promise<{ likes: number; li
       errorMessage = response.statusText || errorMessage;
     }
     const error = new Error(errorMessage);
-    (error as any).status = response.status;
+    (error as Error & { status?: number }).status = response.status;
     throw error;
   }
 
   const responseText = await response.text();
-  let apiResponse: any;
+  let apiResponse: ApiLikeResponse;
   try {
     apiResponse = JSON.parse(responseText);
   } catch {
@@ -501,17 +537,19 @@ export async function getComments(caseId: string): Promise<Comment[]> {
   }
 
   const responseText = await response.text();
-  let apiResponse: any;
+  let apiResponse: ApiCommentsResponse | ApiCommentResponse[];
   try {
     apiResponse = JSON.parse(responseText);
   } catch {
     throw new Error('Invalid JSON response from server');
   }
   // Handle different response formats
-  const comments = apiResponse.data || apiResponse.comments || apiResponse || [];
+  const comments = Array.isArray(apiResponse) 
+    ? apiResponse 
+    : (apiResponse.data || apiResponse.comments || []);
   
   // Ensure each comment has required fields
-  return comments.map((comment: any) => ({
+  return comments.map((comment: ApiCommentResponse) => ({
     id: comment._id || comment.id || '',
     userId: comment.userId || comment.user?._id || comment.user?.id || '',
     userName: comment.userName || comment.user?.name || comment.user?.username || 'Unknown User',
@@ -552,19 +590,21 @@ export async function addComment(caseId: string, data: CommentData): Promise<Com
       errorMessage = response.statusText || errorMessage;
     }
     const error = new Error(errorMessage);
-    (error as any).status = response.status;
+    (error as Error & { status?: number }).status = response.status;
     throw error;
   }
 
   const responseText = await response.text();
-  let apiResponse: any;
+  let apiResponse: ApiCommentResponse | { data?: ApiCommentResponse; comment?: ApiCommentResponse };
   try {
     apiResponse = JSON.parse(responseText);
   } catch {
     throw new Error('Invalid JSON response from server');
   }
   // Handle different response formats
-  const comment = apiResponse.data || apiResponse.comment || apiResponse;
+  const comment = (apiResponse as { data?: ApiCommentResponse; comment?: ApiCommentResponse }).data 
+    || (apiResponse as { data?: ApiCommentResponse; comment?: ApiCommentResponse }).comment 
+    || (apiResponse as ApiCommentResponse);
   
   // Ensure the comment has required fields
   return {
