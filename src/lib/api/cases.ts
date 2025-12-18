@@ -110,7 +110,7 @@ function transformApiCase(apiCase: ApiCaseResponse): Case {
       imageUrl = apiCase.image;
     } else {
       // Otherwise, construct the full URL with the API base URL
-      const baseUrl = 'http://localhost:3001';
+      const baseUrl = env.apiUrl;
       imageUrl = `${baseUrl}${apiCase.image.startsWith('/') ? '' : '/'}${apiCase.image}`;
     }
   }
@@ -153,8 +153,7 @@ export async function getCases(params: GetCasesParams = {}): Promise<GetCasesRes
     queryParams.append('userId', params.userId);
   }
   
-  const url = `http://localhost:3001/api/case-disc?${queryParams.toString()}`;
-  // const url = `${env.apiUrl}/api/cases?${queryParams.toString()}`;
+  const url = `${env.apiUrl}/api/case-disc?${queryParams.toString()}`;
   
   const response = await fetch(url, {
     method: 'GET',
@@ -192,7 +191,7 @@ export async function getCases(params: GetCasesParams = {}): Promise<GetCasesRes
  * Get a single case by ID
  */
 export async function getCaseById(id: string): Promise<Case> {
-  const url = `http://localhost:3001/api/case-disc/${id}`;
+  const url = `${env.apiUrl}/api/case-disc/${id}`;
   const response = await fetch(url, {
     method: 'GET',
     headers: getAuthHeaders(),
@@ -238,8 +237,7 @@ export async function createCase(data: CaseFormData): Promise<Case> {
     throw new Error('Title and content are required');
   }
   
-  const url = `http://localhost:3001/api/case-disc`;
-  // const url = `${env.apiUrl}/api/cases`;
+  const url = `${env.apiUrl}/api/case-disc`;
   
   // If image is present, use FormData; otherwise use JSON
   const hasImage = data.image instanceof File;
@@ -304,8 +302,7 @@ export async function createCase(data: CaseFormData): Promise<Case> {
  * Update an existing case
  */
 export async function updateCase(id: string, data: CaseFormData): Promise<Case> {
-  const url = `http://localhost:3001/api/case-disc/${id}`;
-  // const url = `${env.apiUrl}/api/cases/${id}`;
+  const url = `${env.apiUrl}/api/case-disc/${id}`;
   
   // If image is present, use FormData; otherwise use JSON
   const hasImage = data.image instanceof File;
@@ -370,8 +367,7 @@ export async function updateCase(id: string, data: CaseFormData): Promise<Case> 
  * Delete a case
  */
 export async function deleteCase(id: string): Promise<void> {
-  const url = `http://localhost:3001/api/case-disc/${id}`;
-  // const url = `${env.apiUrl}/api/cases/${id}`;
+  const url = `${env.apiUrl}/api/case-disc/${id}`;
   
   const response = await fetch(url, {
     method: 'DELETE',
@@ -389,7 +385,7 @@ export async function deleteCase(id: string): Promise<void> {
  * Like or unlike a case
  */
 export async function toggleLike(caseId: string): Promise<{ likes: number; liked: boolean }> {
-  const url = `http://localhost:3001/api/case-disc/${caseId}/like`;
+  const url = `${env.apiUrl}/api/case-disc/${caseId}/like`;
   
   const response = await fetch(url, {
     method: 'POST',
@@ -437,7 +433,7 @@ export async function toggleLike(caseId: string): Promise<{ likes: number; liked
  * Get like status for a case
  */
 export async function getLikeStatus(caseId: string): Promise<{ likes: number; liked: boolean }> {
-  const url = `http://localhost:3001/api/case-disc/${caseId}/like`;
+  const url = `${env.apiUrl}/api/case-disc/${caseId}/like`;
   
   const response = await fetch(url, {
     method: 'GET',
@@ -504,7 +500,7 @@ export interface CommentData {
  * Get comments for a case
  */
 export async function getComments(caseId: string): Promise<Comment[]> {
-  const url = `http://localhost:3001/api/case-disc/${caseId}/comments`;
+  const url = `${env.apiUrl}/api/case-disc/${caseId}/comments`;
   
   const response = await fetch(url, {
     method: 'GET',
@@ -566,7 +562,7 @@ export async function getComments(caseId: string): Promise<Comment[]> {
  * Add a comment to a case
  */
 export async function addComment(caseId: string, data: CommentData): Promise<Comment> {
-  const url = `http://localhost:3001/api/case-disc/${caseId}/comments`;
+  const url = `${env.apiUrl}/api/case-disc/${caseId}/comments`;
   
   const response = await fetch(url, {
     method: 'POST',

@@ -57,7 +57,7 @@ export default function Login() {
         <Card className="p-4 sm:p-5 lg:p-6 rounded-xl sm:rounded-2xl lg:rounded-none lg:rounded-r-2xl border shadow-lg bg-background border-glow">
           <form onSubmit={handleSubmit} className="space-y-2.5 sm:space-y-3">
             <div className="space-y-1.5">
-              <Label htmlFor="email" className="text-sm sm:text-base">Email</Label>
+              <Label htmlFor="email" className="text-sm sm:text-base">Email <span className="text-destructive">*</span></Label>
               <Input
                 id="email"
                 type="email"
@@ -72,7 +72,7 @@ export default function Login() {
 
             <div className="space-y-1.5">
               <div className="flex items-center justify-between">
-                <Label htmlFor="password" className="text-sm sm:text-base">Password</Label>
+                <Label htmlFor="password" className="text-sm sm:text-base">Password <span className="text-destructive">*</span></Label>
                 <button type="button" className="text-xs sm:text-sm text-foreground/80 hover:text-foreground hover:underline" data-testid="link-forgot-password">
                   Forgot?
                 </button>

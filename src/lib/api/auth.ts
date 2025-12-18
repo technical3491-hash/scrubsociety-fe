@@ -54,7 +54,7 @@ export async function login(credentials: LoginCredentials): Promise<AuthResponse
     throw new Error('Email and password are required');
   }
 
-  const url = `http://localhost:3001/api/users/login`;
+  const url = `${env.apiUrl}/api/users/login`;
   
   const response = await fetch(url, {
     method: 'POST',
@@ -110,7 +110,7 @@ export async function register(data: RegisterData): Promise<AuthResponse> {
     // Pharmacy name is optional but can be validated if needed
   }
 
-  const url = `http://localhost:3001/api/users/register`;
+  const url = `${env.apiUrl}/api/users/register`;
   
   const response = await fetch(url, {
     method: 'POST',
@@ -153,7 +153,7 @@ export function getAuthHeaders(): HeadersInit {
  * Logout user
  */
 export async function logout(): Promise<void> {
-  const url = `http://localhost:3001/api/users/logout`;
+  const url = `${env.apiUrl}/api/users/logout`;
   
   const response = await fetch(url, {
     method: 'POST',
@@ -181,7 +181,7 @@ export function getAuthToken(): string | null {
  * Get current user
  */
 export async function getCurrentUser(): Promise<AuthResponse['user'] | null> {
-  const url = `http://localhost:3001/api/users/me`;
+  const url = `${env.apiUrl}/api/users/me`;
   
   const response = await fetch(url, {
     method: 'GET',

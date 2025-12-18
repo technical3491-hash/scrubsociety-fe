@@ -211,7 +211,7 @@ export default function Register() {
             {currentStep === 1 && (
               <>
                 <div className="space-y-1.5">
-                  <Label htmlFor="email" className="text-sm sm:text-base">Email</Label>
+                  <Label htmlFor="email" className="text-sm sm:text-base">Email <span className="text-destructive">*</span></Label>
                   <Input
                     id="email"
                     type="email"
@@ -225,7 +225,7 @@ export default function Register() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <Label htmlFor="mobileNumber" className="text-sm sm:text-base">Mobile Number</Label>
+                  <Label htmlFor="mobileNumber" className="text-sm sm:text-base">Mobile Number <span className="text-destructive">*</span></Label>
                   <Input
                     id="mobileNumber"
                     type="tel"
@@ -239,7 +239,7 @@ export default function Register() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <Label htmlFor="password" className="text-sm sm:text-base">Password</Label>
+                  <Label htmlFor="password" className="text-sm sm:text-base">Password <span className="text-destructive">*</span></Label>
                   <Input
                     id="password"
                     type="password"
@@ -268,7 +268,7 @@ export default function Register() {
             {currentStep === 2 && (
               <>
                 <div className="space-y-1.5">
-                  <Label htmlFor="userType" className="text-sm sm:text-base">I am a</Label>
+                  <Label htmlFor="userType" className="text-sm sm:text-base">I am a <span className="text-destructive">*</span></Label>
                   <Select
                     value={formData.userType}
                     onValueChange={(value) => setFormData({ ...formData, userType: value as typeof formData.userType })}
@@ -288,7 +288,7 @@ export default function Register() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <Label htmlFor="name" className="text-sm sm:text-base">Full Name</Label>
+                  <Label htmlFor="name" className="text-sm sm:text-base">Full Name <span className="text-destructive">*</span></Label>
                   <Input
                     id="name"
                     type="text"
@@ -303,7 +303,7 @@ export default function Register() {
 
                 <div className="space-y-1.5">
                   <Label htmlFor="degree" className="text-sm sm:text-base">
-                    {formData.userType === 'student' ? 'Course/Degree' : 'Degree/Qualification'}
+                    {formData.userType === 'student' ? 'Course/Degree' : 'Degree/Qualification'} <span className="text-destructive">*</span>
                   </Label>
                   <Input
                     id="degree"
@@ -321,7 +321,7 @@ export default function Register() {
                 {formData.userType === 'student' && (
                   <>
                     <div className="space-y-1.5">
-                      <Label htmlFor="institution" className="text-sm sm:text-base">Institution/College Name</Label>
+                      <Label htmlFor="institution" className="text-sm sm:text-base">Institution/College Name <span className="text-destructive">*</span></Label>
                       <Input
                         id="institution"
                         type="text"
@@ -380,7 +380,7 @@ export default function Register() {
                 {requiresLicense() && (
                   <div className="space-y-1.5">
                     <Label htmlFor="licenseNo" className="text-sm sm:text-base">
-                      {formData.userType === 'pharmacist' ? 'Pharmacy License Number' : 'Medical License Number'}
+                      {formData.userType === 'pharmacist' ? 'Pharmacy License Number' : 'Medical License Number'} <span className="text-destructive">*</span>
                     </Label>
                     <Input
                       id="licenseNo"
