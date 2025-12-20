@@ -136,13 +136,16 @@ export default function Register() {
     e.preventDefault();
     if (validateStep2() && isValidUserType(formData.userType)) {
       // Type guard ensures userType is valid, so we can safely assert the type
-      const userType = formData.userType as UserType;
-      const registerData = {
+      // Extract userType first to ensure proper type narrowing
+      const validatedUserType: UserType = formData.userType as UserType;
+      
+      // Create registerData with explicit typing to satisfy TypeScript
+      const registerData: RegisterData = {
         name: formData.name,
         email: formData.email,
         password: formData.password,
         mobileNumber: formData.mobileNumber,
-        userType: userType,
+        userType: validatedUserType,
         specialization: formData.specialization,
         degree: formData.degree,
         licenseNo: formData.licenseNo,
@@ -150,7 +153,7 @@ export default function Register() {
         yearOfStudy: formData.yearOfStudy,
         pharmacyName: formData.pharmacyName,
         experience: formData.experience,
-      } as RegisterData;
+      };
       register(registerData);
     }
   };
