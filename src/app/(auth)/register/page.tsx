@@ -135,8 +135,8 @@ export default function Register() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (validateStep2() && isValidUserType(formData.userType)) {
-      // Extract userType to a local variable so TypeScript can properly narrow the type
-      const userType: UserType = formData.userType;
+      // Type guard ensures userType is valid, so we can safely assert the type
+      const userType = formData.userType as UserType;
       const registerData: RegisterData = {
         name: formData.name,
         email: formData.email,
