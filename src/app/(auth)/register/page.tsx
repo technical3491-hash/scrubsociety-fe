@@ -137,7 +137,7 @@ export default function Register() {
     if (validateStep2() && isValidUserType(formData.userType)) {
       // Type guard ensures userType is valid, so we can safely assert the type
       const userType = formData.userType as UserType;
-      const registerData: RegisterData = {
+      const registerData = {
         name: formData.name,
         email: formData.email,
         password: formData.password,
@@ -150,7 +150,7 @@ export default function Register() {
         yearOfStudy: formData.yearOfStudy,
         pharmacyName: formData.pharmacyName,
         experience: formData.experience,
-      };
+      } as RegisterData;
       register(registerData);
     }
   };
