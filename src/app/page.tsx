@@ -262,11 +262,11 @@ export default function Landing() {
               Collaborate, learn, and grow with healthcare professionals worldwide.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-5 justify-center items-stretch sm:items-center">
-              <Link href="/register" className="w-full sm:w-auto">
+              {/* <Link href="/register" className="w-full sm:w-auto">
                 <Button size="default" variant="secondary" className="w-full sm:w-auto text-xs sm:text-sm px-4 sm:px-6 h-10 sm:h-auto" data-testid="button-join-free">
                   Join Free
                 </Button>
-              </Link>
+              </Link> */}
               <Link href="/explore/cases" className="w-full sm:w-auto">
                 <Button
                   size="default"
@@ -287,7 +287,7 @@ export default function Landing() {
                   Play Game
                 </Button>
               </Link>
-              <Link href="/login" className="w-full sm:w-auto">
+              {/* <Link href="/login" className="w-full sm:w-auto">
                 <Button
                   size="default"
                   variant="ghost"
@@ -296,7 +296,7 @@ export default function Landing() {
                 >
                   Login
                 </Button>
-              </Link>
+              </Link> */}
             </div>
           </div>
         </div>

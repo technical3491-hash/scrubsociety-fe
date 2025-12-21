@@ -19,7 +19,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Badge } from "@/components/ui/badge";
-import ThemeToggle from "@/components/ThemeToggle";
+// import ThemeToggle from "@/components/ThemeToggle";
 import Image from "next/image";
 import { useAuth } from "@/hooks/use-auth";
 
@@ -130,7 +130,7 @@ export default function Navbar({ isLoggedIn: propIsLoggedIn }: NavbarProps) {
         <div className="flex items-center space-x-2">
           {/* Desktop: Theme, Notifications, Profile */}
           <div className="hidden md:flex items-center space-x-2">
-            <ThemeToggle />
+            {/* <ThemeToggle /> */}
             {isLoggedIn && (
               <>
                 <Button
@@ -194,9 +194,9 @@ export default function Navbar({ isLoggedIn: propIsLoggedIn }: NavbarProps) {
           </div>
 
           {/* Mobile: Theme toggle (left side of menu button) */}
-          <div className="md:hidden">
+          {/* <div className="md:hidden">
             <ThemeToggle />
-          </div>
+          </div> */}
 
           {/* Mobile Menu Button - Right Corner */}
           <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
