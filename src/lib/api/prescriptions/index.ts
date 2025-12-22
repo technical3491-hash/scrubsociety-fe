@@ -159,9 +159,11 @@ const API_BASE_URL = `${env.apiUrl}/api`;
 export async function analyzePrescription(
   input: AnalyzePrescriptionInput
 ): Promise<PrescriptionAnalysis> {
+  const headers = getAuthHeaders();
+  
   const response = await fetch(`${API_BASE_URL}/drug-intelligence/analyze`, {
     method: 'POST',
-    headers: getAuthHeaders(),
+    headers: headers,
     credentials: 'include',
     body: JSON.stringify(input),
   });

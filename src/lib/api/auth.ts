@@ -137,7 +137,7 @@ export async function register(data: RegisterData): Promise<AuthResponse> {
  * Get authenticated headers with token
  */
 export function getAuthHeaders(): HeadersInit {
-  const headers: HeadersInit = {
+  const headers: Record<string, string> = {
     'Content-Type': 'application/json',
   };
   
