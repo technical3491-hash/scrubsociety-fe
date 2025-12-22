@@ -41,7 +41,7 @@ export default function PrescriptionForm({ onSubmit, isLoading }: PrescriptionFo
     setItems(items.filter((_, i) => i !== index));
   };
 
-  const updateDrug = (index: number, field: keyof PrescriptionItem, value: string | number) => {
+  const updateDrug = (index: number, field: keyof PrescriptionItem, value: string | number | undefined) => {
     const updated = [...items];
     updated[index] = { ...updated[index], [field]: value };
     setItems(updated);
