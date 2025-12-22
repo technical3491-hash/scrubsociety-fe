@@ -2,7 +2,7 @@
 
 import Navbar from "@/components/layout/Navbar";
 import DashboardWidget from "@/components/DashboardWidget";
-import { Activity, Sparkles, GraduationCap, AlertTriangle, Users, Plus, Loader2, Heart } from "lucide-react";
+import { Activity, Sparkles, GraduationCap, AlertTriangle, Users, Plus, Loader2, Heart, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useAuth } from "@/hooks/use-auth";
@@ -59,6 +59,12 @@ export default function Dashboard() {
           <Link href="/drug-search">
             <Button size="lg" variant="outline" data-testid="button-search-drug">
               Search Drug
+            </Button>
+          </Link>
+          <Link href="/prescriptions">
+            <Button size="lg" variant="outline" data-testid="button-analyze-prescription">
+              <FileText className="w-4 h-4 mr-2" />
+              Analyze Prescription
             </Button>
           </Link>
           <Link href="/chat">
