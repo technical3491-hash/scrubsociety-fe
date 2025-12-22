@@ -159,7 +159,7 @@ const API_BASE_URL = `${env.apiUrl}/api`;
 export async function analyzePrescription(
   input: AnalyzePrescriptionInput
 ): Promise<PrescriptionAnalysis> {
-  const response = await fetch(`${API_BASE_URL}/prescription/analyze`, {
+  const response = await fetch(`${API_BASE_URL}/drug-intelligence/analyze`, {
     method: 'POST',
     headers: getAuthHeaders(),
     credentials: 'include',
@@ -232,7 +232,7 @@ export async function getUserPrescriptions(params?: {
     totalPages: number;
   };
 }> {
-  const url = new URL(`${API_BASE_URL}/prescription`);
+  const url = new URL(`${API_BASE_URL}/drug-intelligence`);
   if (params?.page) url.searchParams.append('page', params.page.toString());
   if (params?.limit) url.searchParams.append('limit', params.limit.toString());
   if (params?.status) url.searchParams.append('status', params.status);
@@ -272,7 +272,7 @@ export async function getUserPrescriptions(params?: {
  * Get prescription by ID
  */
 export async function getPrescriptionById(id: string): Promise<PrescriptionAnalysis['prescription']> {
-  const response = await fetch(`${API_BASE_URL}/prescription/${id}`, {
+  const response = await fetch(`${API_BASE_URL}/drug-intelligence/${id}`, {
     method: 'GET',
     headers: getAuthHeaders(),
     credentials: 'include',
@@ -291,7 +291,7 @@ export async function getPrescriptionById(id: string): Promise<PrescriptionAnaly
  * Delete prescription
  */
 export async function deletePrescription(id: string): Promise<void> {
-  const response = await fetch(`${API_BASE_URL}/prescription/${id}`, {
+  const response = await fetch(`${API_BASE_URL}/drug-intelligence/${id}`, {
     method: 'DELETE',
     headers: getAuthHeaders(),
     credentials: 'include',

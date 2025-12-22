@@ -24,7 +24,7 @@ import {
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
 
-export default function PrescriptionsPage() {
+export default function DrugIntelligencePage() {
   const [activeTab, setActiveTab] = useState('new');
   const [selectedPrescriptionId, setSelectedPrescriptionId] = useState<string | null>(null);
   const [analysisResult, setAnalysisResult] = useState<PrescriptionAnalysis | null>(null);
@@ -110,7 +110,7 @@ export default function PrescriptionsPage() {
       <div className="pt-16 min-h-screen">
         <div className="max-w-7xl mx-auto px-4 py-6">
           <div className="mb-6">
-            <h1 className="text-3xl font-bold mb-2">Prescription Drug Intelligence</h1>
+            <h1 className="text-3xl font-bold mb-2">Drug Intelligence</h1>
             <p className="text-muted-foreground">
               Analyze prescriptions for drug verification, safety alerts, interactions, and regulatory compliance
             </p>
@@ -120,7 +120,7 @@ export default function PrescriptionsPage() {
             <TabsList className="grid w-full grid-cols-3">
               <TabsTrigger value="new">
                 <FileText className="w-4 h-4 mr-2" />
-                New Prescription
+                New Analysis
               </TabsTrigger>
               <TabsTrigger value="results">
                 <AlertTriangle className="w-4 h-4 mr-2" />

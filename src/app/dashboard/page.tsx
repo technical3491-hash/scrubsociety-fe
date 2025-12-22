@@ -61,10 +61,10 @@ export default function Dashboard() {
               Search Drug
             </Button>
           </Link>
-          <Link href="/prescriptions">
+          <Link href="/drug-intelligence">
             <Button size="lg" variant="outline" data-testid="button-analyze-prescription">
               <FileText className="w-4 h-4 mr-2" />
-              Analyze Prescription
+              Drug Intelligence
             </Button>
           </Link>
           <Link href="/chat">

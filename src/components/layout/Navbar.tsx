@@ -79,7 +79,7 @@ export default function Navbar({ isLoggedIn: propIsLoggedIn }: NavbarProps) {
     { path: "/dashboard", label: "Dashboard", icon: Home },
     { path: "/case-feed", label: "Cases", icon: FileText },
     { path: "/drug-search", label: "Drugs", icon: Search },
-    { path: "/prescriptions", label: "Prescriptions", icon: Pill },
+    { path: "/drug-intelligence", label: "Drug Intelligence", icon: Pill },
     { path: "/cme", label: "CME", icon: BookOpen },
     { path: "/chat", label: "Chat", icon: MessageSquare },
     { path: "/play-game", label: "Play Game", icon: Gamepad2 },

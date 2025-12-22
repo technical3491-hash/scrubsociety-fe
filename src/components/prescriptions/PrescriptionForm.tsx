@@ -84,7 +84,7 @@ export default function PrescriptionForm({ onSubmit, isLoading }: PrescriptionFo
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Prescription Input</CardTitle>
+        <CardTitle>Drug Intelligence Analysis</CardTitle>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -289,7 +289,7 @@ export default function PrescriptionForm({ onSubmit, isLoading }: PrescriptionFo
                   Analyzing...
                 </>
               ) : (
-                'Analyze Prescription'
+                'Analyze Drugs'
               )}
             </Button>
           </div>

@@ -7,7 +7,7 @@ export const routes = {
   dashboard: '/dashboard',
   caseFeed: '/case-feed',
   drugSearch: '/drug-search',
-  prescriptions: '/prescriptions',
+  drugIntelligence: '/drug-intelligence',
   cme: '/cme',
   chat: '/chat',
   profile: '/profile',
