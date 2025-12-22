@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, User, Home, FileText, Search, BookOpen, MessageSquare, Bell, LogOut, Globe, Gamepad2, LogIn, UserPlus, Pill } from "lucide-react";
+import { Menu, X, User, Home, FileText, BookOpen, MessageSquare, Bell, LogOut, Globe, Gamepad2, LogIn, UserPlus, Pill } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import {
@@ -78,7 +78,6 @@ export default function Navbar({ isLoggedIn: propIsLoggedIn }: NavbarProps) {
   const navItems = [
     { path: "/dashboard", label: "Dashboard", icon: Home },
     { path: "/case-feed", label: "Cases", icon: FileText },
-    { path: "/drug-search", label: "Drugs", icon: Search },
     { path: "/drug-intelligence", label: "Drug Intelligence", icon: Pill },
     { path: "/cme", label: "CME", icon: BookOpen },
     { path: "/chat", label: "Chat", icon: MessageSquare },
