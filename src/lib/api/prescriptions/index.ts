@@ -159,7 +159,7 @@ const API_BASE_URL = `${env.apiUrl}/api`;
 export async function analyzePrescription(
   input: AnalyzePrescriptionInput
 ): Promise<PrescriptionAnalysis> {
-  const response = await fetch(`${API_BASE_URL}/drug-intelligence/analyze`, {
+  const response = await fetch(`${API_BASE_URL}/prescription/analyze`, {
     method: 'POST',
     headers: getAuthHeaders(),
     credentials: 'include',
@@ -168,6 +168,9 @@ export async function analyzePrescription(
 
   if (!response.ok) {
     const text = await response.text() || response.statusText;
+    if (response.status === 401) {
+      throw new Error('Unauthorized: Please log in to analyze prescriptions');
+    }
     throw new Error(`Failed to analyze prescription: ${response.status} ${text}`);
   }
 
