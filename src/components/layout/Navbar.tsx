@@ -76,7 +76,7 @@ export default function Navbar({ isLoggedIn: propIsLoggedIn }: NavbarProps) {
   };
 
   const navItems = [
-    { path: "/dashboard", label: "Dashboard", icon: Home },
+    // { path: "/dashboard", label: "Dashboard", icon: Home },
     { path: "/case-feed", label: "Cases", icon: FileText },
     { path: "/drug-intelligence", label: "Drug Intelligence", icon: Pill },
     { path: "/cme", label: "CME", icon: BookOpen },
